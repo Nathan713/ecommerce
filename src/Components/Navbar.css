@@ -1,0 +1,133 @@
+
+@font-face {
+    font-family: "Lato-Thin";
+    src: local("Lato"),
+        url("../fonts/Lato/Lato-Thin.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Lato-Bold";
+    src: local("Lato"),
+        url("../fonts/Lato/Lato-Bold.ttf") format("truetype");
+}
+body{
+    text-transform: capitalize;
+    line-height: 1.5;
+}
+a{
+    text-decoration: none;
+    color:black;
+}
+h1{
+    font-size:2rem;
+    text-transform: uppercase;
+}
+nav{
+    position: relative;
+    z-index: 10;
+    width:100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100px;
+    /* border: 2px green solid; */
+    
+}
+.flex-container {
+    display: flex;
+    height:56px;
+    flex-direction: row;
+    align-items: center;
+    /* border: 2px blue solid; */
+    width:95vw;
+    z-index:10;
+}
+
+.flex-container .logo {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.flex-item {
+    display: flex;
+    align-items: center;
+    /* border: 2px red solid; */
+    flex-grow: 0;
+    height:100%;
+    cursor: pointer;
+}
+.flex-item.disappearing-link{
+    display:none;
+    /* background-color: green; */
+}
+.flex-item .icons{
+    padding:0.5rem;
+}
+
+@media screen and (min-width:768px) {
+    .flex-item{
+        min-width: 2rem;
+        justify-content: center;
+        margin: 0 1rem;
+    }
+    .flex-item a{
+        display:flex;
+    }
+        .flex-item.disappearing-link {
+            display: flex;
+        }
+    .disappearing-link{
+        padding:0 0.5rem;
+    }
+}
+.dropdown-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    z-index:2;
+    background-color: white;
+    width:30%;
+    height: calc(100vh - 100px);
+    top:100px;
+    left: 0px;
+    border-bottom: 1px solid black;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    
+}
+.drop-down-list{
+    /* background-color: blue; */
+    width: 100%;
+}
+.drop-down-item{
+    height: 50px;
+    /* background-color: yellow; */
+    width:100%;
+    font-size: 24px;
+    padding-left: 1rem;
+    cursor: pointer;
+}
+.drop-down-item:hover{
+    background-color: rgba(205, 192, 192, 0.712);
+}
+.searchbar-container{
+    display:flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width:100vw;
+    height: 80px;
+    background-color: white;
+    top:100px;
+    left:0px;
+}
+.searchbar{
+    width: 50%;
+    height:40px;
+}
+.searchCloseIcon{
+    position:absolute;
+    top: 25%;
+    right:2rem;
+    cursor:pointer;
+}
