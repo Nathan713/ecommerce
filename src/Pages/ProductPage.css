@@ -1,0 +1,18 @@
+
+.container2 {
+    height: 100vh;
+    width: 100vw;
+    
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    flex: 1;
+    background-color: rgb(233, 231, 230);
+}
+
+.right {
+    flex: 1;
+    background-color: rgb(255, 255, 255);
+}

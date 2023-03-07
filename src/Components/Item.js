@@ -11,6 +11,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useState, useEffect } from "react";
 import commerce from "../lib/commerce";
 import ColorSwatch from "./ColorSwatch";
+import { ColorRing } from "react-loader-spinner";
 
 export default function Item({ product }) {
   const [visible, setVisible] = useState(false);
@@ -24,6 +25,9 @@ export default function Item({ product }) {
     setVisible(false);
   };
 
+  const routeToProductPage = () => {
+    console.log("routed");
+  };
   useEffect(() => {
     fetchVariants();
   }, []);
@@ -44,7 +48,20 @@ export default function Item({ product }) {
   function handleSelectColor(id) {
     setAssets(variantsdata[id].assets);
   }
-
+  if (assets.length == 0)
+    return (
+      <div className="loaderContainer">
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+        />
+      </div>
+    );
   return (
     <article className="item-container">
       <div
@@ -87,7 +104,11 @@ export default function Item({ product }) {
           }
         >
           {assets.map((asset) => (
-            <div className="carousel-img" key={asset.id}>
+            <div
+              className="carousel-img"
+              key={asset.id}
+              onClick={routeToProductPage}
+            >
               <img alt="bagss" src={asset.url} className="image" />
             </div>
           ))}

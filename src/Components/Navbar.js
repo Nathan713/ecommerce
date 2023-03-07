@@ -7,6 +7,8 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import "../fonts/Lato/Lato-Thin.ttf";
 import commerce from "../lib/commerce";
 import { motion, AnimatePresence } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../features/products/productsSlice";
 
 export default function Navbar() {
   const [categories, setCategories] = useState([]);
@@ -17,8 +19,21 @@ export default function Navbar() {
 
   const [text, setText] = useState("Menu");
 
+  const dispatch = useDispatch();
+  const { entities, loading } = useSelector((state) => state.products);
+
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
+  };
+  const handleSearchEnter = () => {
+    dispatch(getProducts({ searchBy: 2, query: searchTerm, slugs: [] }));
+    setSearchTerm("");
+    setSearchOn(false);
+  };
+  const handleCategoryClick = (categoryName) => {
+    let arr = [];
+    arr.push(categoryName);
+    dispatch(getProducts({ searchBy: 3, query: searchTerm, slugs: arr }));
   };
 
   const handleTextChange = () => {
@@ -52,8 +67,8 @@ export default function Navbar() {
   const fetchCategories = () => {
     commerce.categories.list().then((category) => {
       setCategories(category.data);
-      console.log(category.data);
-      console.log(categories);
+      // console.log(category.data);
+      // console.log(categories);
     });
   };
   return (
@@ -107,9 +122,8 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
-      {/* start of dropdown */}
+      {/* start of menu dropdown */}
 
-      {/* start dropdown  */}
       <motion.div
         ref={dropdownRef}
         className="dropdown-container"
@@ -118,7 +132,11 @@ export default function Navbar() {
         <div className="drop-down-list">
           {dropdown &&
             categories.map((category) => (
-              <div className="drop-down-item" key={category.id}>
+              <div
+                className="drop-down-item"
+                key={category.id}
+                onClick={() => handleCategoryClick(category.name)}
+              >
                 {category.name}
               </div>
             ))}
@@ -143,6 +161,9 @@ export default function Navbar() {
           onChange={handleSearch}
           placeholder="Search..."
         />
+        <div className="searchIcon" onClick={() => handleSearchEnter()}>
+          <SearchIcon fontSize="large"></SearchIcon>
+        </div>
         <div className="searchCloseIcon" onClick={() => setSearchOn(false)}>
           <CloseIcon fontSize="large"></CloseIcon>
         </div>
