@@ -18,7 +18,7 @@ export default function Item({ product }) {
   const [visible, setVisible] = useState(false);
   const [assets, setAssets] = useState([]);
   const [variantsdata, setVariantsData] = useState([]);
-
+  console.log(product);
   const navigate = useNavigate();
 
   const handleProductClick = (id) => {
@@ -33,8 +33,8 @@ export default function Item({ product }) {
 
   useEffect(() => {
     fetchVariants();
-    console.log(assets);
-    console.log(variantsdata);
+    // console.log(assets);
+    // console.log(variantsdata);
   }, []);
 
   const fetchVariants = () => {
@@ -123,7 +123,7 @@ export default function Item({ product }) {
         </Carousel>
       </div>
       <div className="item-details-container">
-        <div className="item-name">Luxury Bag</div>
+        <div className="item-name">{product.name}</div>
         {assets.length > 0 && (
           <ColorSwatch
             onSelectColor={handleSelectColor}
@@ -131,7 +131,9 @@ export default function Item({ product }) {
           ></ColorSwatch>
         )}
 
-        <div className="item-price font-face-Lato-Regular">$500</div>
+        <div className="item-price font-face-Lato-Regular">
+          {product.price.formatted_with_symbol}
+        </div>
       </div>
     </article>
   );

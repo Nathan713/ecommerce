@@ -132,3 +132,15 @@ img{
     background-color: rgba(1, 2, 3, 0.1);
     cursor: pointer;
 }
+.outOfStockButton {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 3.5rem;
+    text-transform: uppercase;
+    line-height: 2rem;
+    padding: 1rem 0;
+    width: 100%;
+    background-color: rgba(1, 2, 3, 0.1);
+}

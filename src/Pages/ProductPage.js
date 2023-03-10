@@ -167,12 +167,16 @@ export default function ProductPage() {
                 ></RemoveIcon>
               </div>
             </div>
-            <div
-              className="addToCartButton"
-              onClick={() => addToCart(id, quantity, currentVariantId)}
-            >
-              Add To Cart
-            </div>
+            {product && product.inventory.available > 0 ? (
+              <div
+                className="addToCartButton"
+                onClick={() => addToCart(id, quantity, currentVariantId)}
+              >
+                Add To Cart
+              </div>
+            ) : (
+              <div className="outOfStockButton">Out Of Stock</div>
+            )}
           </div>
         </div>
       </div>
