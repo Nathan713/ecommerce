@@ -18,7 +18,7 @@ export default function ColorSwatch({ onSelectColor, assets }) {
       //   console.log(assets[i].description);
     }
     setColors(arr);
-    console.log(arr);
+    // console.log(arr);
   };
 
   return (

@@ -30,28 +30,32 @@ export default function ProductPage() {
   const [productPrice, setProductPrice] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [currentVariantId, setCurrentVariantId] = useState(null);
+  const [currentVariantIndex, setCurrentVariantIndex] = useState(0);
 
   const { id } = useParams();
   console.log(id);
 
   const location = useLocation();
   const variantAssets = location.state.variantAssets;
-
+  console.log(variantAssets);
   useEffect(() => {
     setVariantsData(variantAssets);
     setCurrentVariantsData(variantAssets[0].assets);
     setCurrentVariantId(variantAssets[0].id);
-    console.log(variantAssets);
+    console.log(variantsdata);
     fetchProduct();
   }, []);
 
   function handleSelectColor(id) {
+    setCurrentVariantIndex(id);
     setCurrentVariantsData(variantsdata[id].assets);
     setCurrentVariantId(variantAssets[id].id);
+    setQuantity(1);
   }
 
   const onAdd = () => {
-    if (quantity < product.inventory.available) setQuantity(quantity + 1);
+    if (quantity < variantAssets[currentVariantIndex].inventory)
+      setQuantity(quantity + 1);
   };
   const onRemove = () => {
     if (quantity > 1) setQuantity(quantity - 1);
@@ -103,7 +107,8 @@ export default function ProductPage() {
               emulateTouch={true}
               infiniteLoop={true}
               showThumbs={false}
-              showIndicators={false}
+              thumbWidth={150}
+              showIndicators={true}
               showStatus={false}
               className="carousel"
               renderArrowPrev={(onClickHandler, hasPrev, label) =>
@@ -167,7 +172,8 @@ export default function ProductPage() {
                 ></RemoveIcon>
               </div>
             </div>
-            {product && product.inventory.available > 0 ? (
+            {variantAssets &&
+            variantAssets[currentVariantIndex].inventory > 0 ? (
               <div
                 className="addToCartButton"
                 onClick={() => addToCart(id, quantity, currentVariantId)}
