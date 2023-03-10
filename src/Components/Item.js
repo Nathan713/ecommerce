@@ -12,12 +12,18 @@ import { useState, useEffect } from "react";
 import commerce from "../lib/commerce";
 import ColorSwatch from "./ColorSwatch";
 import { ColorRing } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 export default function Item({ product }) {
   const [visible, setVisible] = useState(false);
   const [assets, setAssets] = useState([]);
   const [variantsdata, setVariantsData] = useState([]);
 
+  const navigate = useNavigate();
+
+  const handleProductClick = (id) => {
+    navigate(`/product/${id}`, { state: { variantAssets: variantsdata } });
+  };
   const handleBoxToggle = () => {
     setVisible(true);
   };
@@ -25,11 +31,10 @@ export default function Item({ product }) {
     setVisible(false);
   };
 
-  const routeToProductPage = () => {
-    console.log("routed");
-  };
   useEffect(() => {
     fetchVariants();
+    console.log(assets);
+    console.log(variantsdata);
   }, []);
 
   const fetchVariants = () => {
@@ -48,7 +53,8 @@ export default function Item({ product }) {
   function handleSelectColor(id) {
     setAssets(variantsdata[id].assets);
   }
-  if (assets.length == 0)
+
+  if (assets.length === 0)
     return (
       <div className="loaderContainer">
         <ColorRing
@@ -107,7 +113,9 @@ export default function Item({ product }) {
             <div
               className="carousel-img"
               key={asset.id}
-              onClick={routeToProductPage}
+              onClick={() => {
+                handleProductClick(product.id);
+              }}
             >
               <img alt="bagss" src={asset.url} className="image" />
             </div>

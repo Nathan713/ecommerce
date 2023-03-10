@@ -9,6 +9,8 @@ import commerce from "../lib/commerce";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../features/products/productsSlice";
+import { retrieveCart } from "../features/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [categories, setCategories] = useState([]);
@@ -20,7 +22,9 @@ export default function Navbar() {
   const [text, setText] = useState("Menu");
 
   const dispatch = useDispatch();
-  const { entities, loading } = useSelector((state) => state.products);
+  const { totalQuantity } = useSelector((state) => state.cart);
+
+  const navigate = useNavigate();
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -29,11 +33,16 @@ export default function Navbar() {
     dispatch(getProducts({ searchBy: 2, query: searchTerm, slugs: [] }));
     setSearchTerm("");
     setSearchOn(false);
+    navigate("/", { state: { skipEffect: true } });
+  };
+  const logoClick = () => {
+    navigate("/", { state: { skipEffect: false } });
   };
   const handleCategoryClick = (categoryName) => {
     let arr = [];
     arr.push(categoryName);
     dispatch(getProducts({ searchBy: 3, query: searchTerm, slugs: arr }));
+    navigate("/", { state: { skipEffect: true } });
   };
 
   const handleTextChange = () => {
@@ -42,6 +51,7 @@ export default function Navbar() {
 
   useEffect(() => {
     fetchCategories();
+    dispatch(retrieveCart());
   }, []);
 
   useEffect(() => {
@@ -109,16 +119,19 @@ export default function Navbar() {
             <SearchIcon fontSize="large"></SearchIcon>
             Search
           </div>
-          <h1 className="logo font-face-Lato-Thin">My Store</h1>
+          <h1 onClick={() => logoClick()} className="logo font-face-Lato-Thin">
+            My Store
+          </h1>
           <div className="flex-item disappearing-link font-face-Lato-Bold">
             Wishlist
           </div>
           <div className="flex-item disappearing-link font-face-Lato-Bold">
             Sign in
           </div>
-          <div className="flex-item font-face-Lato-Bold">
+          <div className="flex-item font-face-Lato-Bold cart">
             <ShoppingBagIcon fontSize="large"></ShoppingBagIcon>
             Cart
+            <span className="cart-items">{totalQuantity}</span>
           </div>
         </div>
       </nav>

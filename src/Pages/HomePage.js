@@ -9,15 +9,22 @@ import commerce from "../lib/commerce";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../features/products/productsSlice";
 import { ColorRing } from "react-loader-spinner";
+import { useLocation } from "react-router-dom";
 
 function HomePage() {
   const dispatch = useDispatch();
   const { entities, loading } = useSelector((state) => state.products);
 
+  const location = useLocation();
+  console.log(location);
   useEffect(() => {
-    dispatch(getProducts({ searchBy: 1, query: "", slugs: [] }));
-    // console.log(entities);
-  }, []);
+    if (!location.state?.skipEffect) {
+      // Run the code you want to run when the page is navigated to.
+      console.log("render");
+      dispatch(getProducts({ searchBy: 1, query: "", slugs: [] }));
+    }
+  }, [location.state]);
+
   if (loading)
     return (
       <div className="loaderContainer">

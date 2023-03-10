@@ -46,6 +46,7 @@ nav{
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .flex-item {
@@ -133,4 +134,18 @@ nav{
 }
 .searchIcon{
     cursor:pointer;
+}
+.cart{
+    position: relative;
+}
+.cart-items{
+    position: absolute;
+        top : 0;
+        left:-10px;
+        background-color: black;
+        color: white;
+        font-size: 12px;
+        padding: 3px 6px;
+        border-radius: 50%;
+        z-index:10;
 }

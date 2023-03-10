@@ -1,18 +1,134 @@
-
-.container2 {
-    height: 100vh;
-    width: 100vw;
-    
-    display: flex;
-    flex-direction: row;
+img{
+    object-fit: cover; 
 }
+.container2 {
+    height: 200vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
 
 .left {
     flex: 1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(233, 231, 230);
+    
 }
 
 .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 1;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
+    background-color: white;
+    margin-top: 2rem;
+} 
+@media screen and (min-width: 720px) {
+    .container2 {
+            flex-direction: row;
+            height:100vh;
+    }
+}
+.productDetailsContainer{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+    width: calc(100% - 10%);
+    height: calc(100% - 10%);
+    background-color: white;
+    position: relative;
+
+}
+.productName{
+    align-self: flex-start;
+    font-size: 30px;
+    margin-bottom: 2rem;
+}
+.productDescription{
+    font-size: 16px;
+    margin-bottom: 2rem;
+}
+.productPrice{
+    align-self: flex-start;
+    font-size: 16px;
+    margin-bottom: 2rem;
+}
+.price {
+    position: relative;
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+
+.price::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+}
+.colorSelector{
+    margin-bottom: 2rem;
+}
+.quantityContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    
+}
+
+.quantity-start {
+    align-self: flex-start;
+    font-size: 16px;
+}
+
+.quantity-end {
+    align-self: flex-end;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.addIcon{
+    margin: 0 1rem;
+}
+.addIcon:hover{
+    scale: 1.5;
+    background-color:rgba(1,2,3,0.1);
+    cursor: pointer;
+}
+.removeIcon:hover{
+    scale: 1.5;
+    background-color:rgba(1,2,3,0.1);
+    cursor:pointer;
+}
+.removeIcon{
+    margin: 0 1rem;
+}
+.quantityNumber{
+    font-size: 16px;
+    border: solid 2px black;
+    padding: 0 1.5rem;
+}
+.addToCartButton{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom:3.5rem;
+    text-transform: uppercase;
+    line-height: 2rem;
+    padding: 1rem 0;
+    width:100%;
+    border: 3px solid black;   
+}
+.addToCartButton:hover{
+    background-color: rgba(1, 2, 3, 0.1);
+    cursor: pointer;
 }

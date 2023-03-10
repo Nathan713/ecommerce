@@ -3,7 +3,9 @@
     flex-direction: row;
     flex-grow: 1;
     justify-content: center;
-    gap:12.5px;
+    column-gap: 12.5px;
+    align-content: flex-start;
+        /* Add this line */
 }
 .circle {
     width: 25px;
@@ -11,4 +13,6 @@
     border-radius: 50%;
     border: 1px solid black;
     cursor: pointer;
+    margin-bottom: 0;
+        /* Add this line */
 }
