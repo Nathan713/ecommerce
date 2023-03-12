@@ -18,7 +18,7 @@ export default function ProductPage() {
   const { items, totalQuantity, totalPrice, loading } = useSelector(
     (state) => state.cart
   );
-  console.log(totalQuantity);
+  // console.log(totalQuantity);
 
   const [visible, setVisible] = useState(false);
   const [assets, setAssets] = useState([]);
@@ -33,28 +33,47 @@ export default function ProductPage() {
   const [currentVariantIndex, setCurrentVariantIndex] = useState(0);
 
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   const location = useLocation();
-  const variantAssets = location.state.variantAssets;
-  console.log(variantAssets);
+  // const variantAssets = location.state.variantAssets;
+  // console.log(variantAssets);
   useEffect(() => {
-    setVariantsData(variantAssets);
-    setCurrentVariantsData(variantAssets[0].assets);
-    setCurrentVariantId(variantAssets[0].id);
-    console.log(variantsdata);
+    fetchVariants();
+    // setVariantsData(variantAssets);
+    // setCurrentVariantsData(variantAssets[0].assets);
+    // setCurrentVariantId(variantAssets[0].id);
+    // console.log(variantsdata);
     fetchProduct();
   }, []);
+  const fetchVariants = () => {
+    commerce.products
+      .getVariants(id)
+      .then((variants) => {
+        console.log(variants);
+        setVariantsData(variants.data);
+        setCurrentVariantsData(variants.data[0].assets);
+        setCurrentVariantId(variants.data[0].id);
+        // setAssets(variants.data[0].assets);
+        // setVariantsData(variants.data);
+        // console.log(variants.data);
+      })
+      .catch((error) => {
+        console.log("There was an error fetching the variants", error);
+      });
+  };
 
   function handleSelectColor(id) {
     setCurrentVariantIndex(id);
     setCurrentVariantsData(variantsdata[id].assets);
-    setCurrentVariantId(variantAssets[id].id);
+    // setCurrentVariantId(variantAssets[id].id);
+    setCurrentVariantId(variantsdata[id].id);
     setQuantity(1);
   }
 
   const onAdd = () => {
-    if (quantity < variantAssets[currentVariantIndex].inventory)
+    // if (quantity < variantAssets[currentVariantIndex].inventory)
+    if (quantity < variantsdata[currentVariantIndex].inventory)
       setQuantity(quantity + 1);
   };
   const onRemove = () => {
@@ -172,8 +191,10 @@ export default function ProductPage() {
                 ></RemoveIcon>
               </div>
             </div>
-            {variantAssets &&
-            variantAssets[currentVariantIndex].inventory > 0 ? (
+            {/* {variantAssets &&
+            variantAssets[currentVariantIndex].inventory > 0 ? ( */}
+            {variantsdata.length > 0 &&
+            variantsdata[currentVariantIndex].inventory > 0 ? (
               <div
                 className="addToCartButton"
                 onClick={() => addToCart(id, quantity, currentVariantId)}

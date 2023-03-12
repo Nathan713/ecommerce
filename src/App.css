@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body{
-  font-family: "Lato-Bold";
+  font-family: "Lato-Regular";
 }
 img,
 picture,
@@ -54,13 +54,31 @@ video {
   src: local("Lato"),
     url("./fonts/Lato/Lato-Regular.ttf") format("truetype");
 }
-
-.font-face-Lato-Thin {
-  font-family: "Lato-Thin";
+@font-face {
+  font-family: "Lato-Bold";
+  src: local("Lato"),
+    url("./fonts/Lato/Lato-Bold.ttf") format("truetype");
 }
-.font-face-Lato-Regular {
+@font-face {
+  font-family: "Lato-Light";
+  src: local("Lato"),
+    url("./fonts/Lato/Lato-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Lato-Italic";
+  src: local("Lato"),
+    url("./fonts/Lato/Lato-Italic.ttf") format("truetype");
+}
+
+.Lato-Light {
+  font-family: "Lato-Light";
+}
+.Lato-Regular {
   font-family: "Lato-Regular";
 }
-.font-face-Lato-Bold {
+.Lato-Bold {
   font-family: "Lato-Bold";
+}
+.Lato-Italic {
+  font-family: "Lato-Italic";
 }

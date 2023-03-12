@@ -22,7 +22,7 @@ export default function Item({ product }) {
   const navigate = useNavigate();
 
   const handleProductClick = (id) => {
-    navigate(`/product/${id}`, { state: { variantAssets: variantsdata } });
+    navigate(`/product/${id}`);
   };
   const handleBoxToggle = () => {
     setVisible(true);

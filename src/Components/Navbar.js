@@ -26,6 +26,11 @@ export default function Navbar() {
 
   const navigate = useNavigate();
 
+  const onCartClick = () => {
+    console.log("cart");
+    navigate("/cart");
+  };
+
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -128,7 +133,10 @@ export default function Navbar() {
           <div className="flex-item disappearing-link font-face-Lato-Bold">
             Sign in
           </div>
-          <div className="flex-item font-face-Lato-Bold cart">
+          <div
+            className="flex-item font-face-Lato-Bold cart"
+            onClick={() => onCartClick()}
+          >
             <ShoppingBagIcon fontSize="large"></ShoppingBagIcon>
             Cart
             <span className="cart-items">{totalQuantity}</span>

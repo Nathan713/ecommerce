@@ -1,0 +1,102 @@
+.cart-card-container{
+    width: 80%;
+    height:250px;
+    background: white;
+    border:2px solid white;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+        "image name price"
+        "image selectedOptions view"
+        "image quantity delete";
+    margin: 1rem 0;
+}
+.image-container{
+    grid-area: image;
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper {
+    height: 240px;
+    width: 250px;
+    position: relative;
+}
+
+.name-container{
+    grid-area: name;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 30px;
+    border-left: 0.1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
+    border-right: 0.1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+    /* background-color: pink; */
+}
+.price-container{
+    grid-area: price;
+    font-size: 20px;
+    padding-top: 1.5rem;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    /* border-left: 0.1px solid rgba(0, 0, 0, 0.3); */
+    /* background-color: grey; */
+}
+.selected-options-container{
+    grid-area: selectedOptions;
+    display:flex;
+    justify-content: space-between;
+    border-left: 0.1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
+    border-right: 0.1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+    /* background-color: aqua; */
+}
+.quantity-container{
+    grid-area: quantity;
+    border-left: 0.1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
+    border-right: 0.1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+    /* background-color: red; */
+}
+.cart-image{
+    height: 100%;
+    width:100%;
+    object-fit: cover;
+}
+.position-left{
+    display:inline-block;
+}
+.delete-container{
+    grid-area: delete;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.delete-container:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+@media screen and (max-width:720px) {
+    .remove-text{
+        display:none;
+    }
+}
+.view-product-container{
+    grid-area: view;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.view-product-container:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}

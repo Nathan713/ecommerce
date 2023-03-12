@@ -22,6 +22,20 @@ export const addItem = createAsyncThunk(
     }
   }
 );
+export const deleteItem = createAsyncThunk(
+  "cart.deleteItem",
+  async ({ itemId }, thunkAPI) => {
+    try {
+      console.log(itemId);
+      let cart = {};
+      cart = await commerce.cart.remove(itemId);
+      console.log(cart);
+      return cart.cart;
+    } catch (error) {
+      throw Error(error.message);
+    }
+  }
+);
 export const retrieveCart = createAsyncThunk(
   "cart.retrieveCart",
   async (thunkAPI) => {
@@ -67,6 +81,21 @@ export const cartSlice = createSlice({
         state.totalQuantity = action.payload.total_items;
       })
       .addCase(retrieveCart.rejected, (state, action) => {
+        state.loading = false;
+      })
+      .addCase(deleteItem.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(deleteItem.fulfilled, (state, action) => {
+        // console.log(action);
+        state.loading = false;
+        console.log("action = ", action);
+        state.items = action.payload.line_items;
+        state.totalPrice = action.payload.subtotal.formatted_with_symbol;
+        state.totalQuantity = action.payload.total_items;
+      })
+      .addCase(deleteItem.rejected, (state, action) => {
+        console.log(action);
         state.loading = false;
       });
   },
