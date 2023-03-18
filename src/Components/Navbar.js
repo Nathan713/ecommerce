@@ -45,10 +45,11 @@ export default function Navbar() {
     navigate("/", { state: { skipEffect: false } });
   };
   const handleCategoryClick = (categoryName) => {
-    let arr = [];
-    arr.push(categoryName);
-    dispatch(getProducts({ searchBy: 3, query: searchTerm, slugs: arr }));
-    navigate("/", { state: { skipEffect: true } });
+    // let arr = [];
+    // arr.push(categoryName);
+    // dispatch(getProducts({ searchBy: 3, query: searchTerm, slugs: arr }));
+    // navigate("/", { state: { skipEffect: true } });
+    navigate(`/category/${categoryName}`);
   };
 
   const handleTextChange = () => {
