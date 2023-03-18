@@ -1,9 +1,6 @@
 import React from "react";
-import "./Item.css";
-import bagExtraSmall from "../media/images/bag-extra-small.jpg";
-import bag from "../media/images/bag.jpg";
-import bagLarge from "../media/images/bag.jpg";
-import bagExtraLarge from "../media/images/bag-extra-large.jpg";
+// import "./Item.css";
+import styles from "./Item.module.css";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -56,7 +53,7 @@ export default function Item({ product }) {
 
   if (assets.length === 0)
     return (
-      <div className="loaderContainer">
+      <div className={styles.loader_container}>
         <ColorRing
           visible={true}
           height="80"
@@ -69,61 +66,66 @@ export default function Item({ product }) {
       </div>
     );
   return (
-    <article className="item-container">
+    <article className={styles.item_container}>
       <div
-        className="img-container"
+        className={styles.img_container}
         onMouseEnter={handleBoxToggle}
         onMouseLeave={handleBoxTog}
       >
-        <Carousel
-          emulateTouch={true}
-          infiniteLoop={true}
-          showThumbs={false}
-          showIndicators={false}
-          showStatus={false}
-          className="carousel"
-          renderArrowPrev={(onClickHandler, hasPrev, label) =>
-            hasPrev &&
-            visible && (
-              <button
-                className="arrow-left"
-                type="button"
-                onClick={onClickHandler}
-                title={label}
+        <div className={styles.carousel_container}>
+          <Carousel
+            infiniteLoop={true}
+            showThumbs={false}
+            showIndicators={true}
+            showStatus={false}
+            className={styles.carousel}
+            renderArrowPrev={(onClickHandler, hasPrev, label) =>
+              hasPrev &&
+              visible && (
+                <button
+                  className={styles.arrow_left}
+                  type="button"
+                  onClick={onClickHandler}
+                  title={label}
+                >
+                  <ArrowBackIosIcon fontSize="large"></ArrowBackIosIcon>
+                </button>
+              )
+            }
+            renderArrowNext={(onClickHandler, hasNext, label) =>
+              hasNext &&
+              visible && (
+                <button
+                  className={styles.arrow_right}
+                  type="button"
+                  onClick={onClickHandler}
+                  title={label}
+                >
+                  <ArrowForwardIosIcon fontSize="large"></ArrowForwardIosIcon>
+                </button>
+              )
+            }
+          >
+            {assets.map((asset) => (
+              <div
+                className={styles.carousel_img}
+                onClick={() => {
+                  handleProductClick(product.id);
+                }}
               >
-                <ArrowBackIosIcon fontSize="large"></ArrowBackIosIcon>
-              </button>
-            )
-          }
-          renderArrowNext={(onClickHandler, hasNext, label) =>
-            hasNext &&
-            visible && (
-              <button
-                className="arrow-right"
-                type="button"
-                onClick={onClickHandler}
-                title={label}
-              >
-                <ArrowForwardIosIcon fontSize="large"></ArrowForwardIosIcon>
-              </button>
-            )
-          }
-        >
-          {assets.map((asset) => (
-            <div
-              className="carousel-img"
-              key={asset.id}
-              onClick={() => {
-                handleProductClick(product.id);
-              }}
-            >
-              <img alt="bagss" src={asset.url} className="image" />
-            </div>
-          ))}
-        </Carousel>
+                <img
+                  alt="bagss"
+                  src={asset.url}
+                  className={styles.image}
+                  key={asset.id}
+                />
+              </div>
+            ))}
+          </Carousel>
+        </div>
       </div>
-      <div className="item-details-container">
-        <div className="item-name">{product.name}</div>
+      <div className={styles.item_details_container}>
+        <div className={styles.item_name}>{product.name}</div>
         {assets.length > 0 && (
           <ColorSwatch
             onSelectColor={handleSelectColor}
@@ -131,7 +133,7 @@ export default function Item({ product }) {
           ></ColorSwatch>
         )}
 
-        <div className="item-price font-face-Lato-Regular">
+        <div className={styles.item_price}>
           {product.price.formatted_with_symbol}
         </div>
       </div>

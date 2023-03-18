@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./CartCard.css";
+import styles from "./CartCard.module.css";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteItem } from "../features/cart/cartSlice";
@@ -34,37 +34,42 @@ export default function CartCard({ item }) {
   };
   return (
     <>
-      <div className="cart-card-container">
-        <div className="image-container">
-          <div className="image-wrapper">
-            <img alt={productName} src={imageUrl} className="cart-image" />
+      <div className={styles.cart_card_container}>
+        <div className={styles.image_container}>
+          <div className={styles.image_wrapper}>
+            <img
+              alt={productName}
+              src={imageUrl}
+              className={styles.cart_image}
+            />
           </div>
         </div>
-        <div className="name-container Lato-Bold">{productName}</div>
-        <div className="price-container Lato-Bold">
+        <div className={styles.name_container}>{productName}</div>
+        <div className={styles.price_container}>
           <div>{itemPrice}</div>
         </div>
-        <div className="selected-options-container">
+        <div className={styles.selected_options_container}>
           {selectedOption.map((option) => (
             <>
               <div>{option.group_name}: </div>
-              <div className="position-left Lato-Light">
-                {option.option_name}
-              </div>
+              <div className={styles.position_left}>{option.option_name}</div>
             </>
           ))}
         </div>
-        <div className="quantity-container">Qty: {quantity}</div>
-        <div className="delete-container" onClick={() => onDeleteItem(item.id)}>
+        <div className={styles.quantity_container}>Qty: {quantity}</div>
+        <div
+          className={styles.delete_container}
+          onClick={() => onDeleteItem(item.id)}
+        >
           <HighlightOffIcon></HighlightOffIcon>
-          <span className="remove-text">Remove</span>
+          <span className={styles.remove_text}>Remove</span>
         </div>
         <div
-          className="view-product-container"
+          className={styles.view_product_container}
           onClick={() => onViewItem(item.product_id)}
         >
           <VisibilityIcon></VisibilityIcon>
-          <span className="remove-text">Details</span>
+          <span className={styles.remove_text}>Details</span>
         </div>
       </div>
     </>

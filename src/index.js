@@ -8,11 +8,12 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductPage from "./Pages/ProductPage";
 import HomePage from "./Pages/HomePage";
+import CheckoutPage from "./Pages/CheckoutPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App></App>
+    <App />
   </React.StrictMode>
 );
 

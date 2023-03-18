@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./CartPage.css";
+import styles from "./CartPage.module.css";
 import commerce from "../lib/commerce";
 import { useSelector } from "react-redux";
 import CartCard from "../Components/CartCard";
@@ -20,21 +20,31 @@ export default function CartPage() {
       console.log(items);
     });
   }, []);
-
+  const formatter = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
   const goToHome = () => {
     navigate("/", { state: { skipEffect: false } });
+  };
+  const goToCheckout = () => {
+    console.log("checkout");
+    navigate("/checkout");
   };
 
   return (
     <>
       <Navbar></Navbar>
-      <div className="cartpage-container">
-        <div className="flex-left">
-          <div className="cart-header-container">
-            <div className="cart-header Lato-Italic">
+      <div className={styles.cartpage_container}>
+        <div className={styles.flex_left}>
+          <div className={styles.cart_header_container}>
+            <div className={styles.cart_header}>
               My Shopping Cart ({totalQuantity})
             </div>
-            <div onClick={() => goToHome()} className="continue-shopping">
+            <div
+              onClick={() => goToHome()}
+              className={styles.continue_shopping}
+            >
               Continue Shopping
             </div>
           </div>
@@ -43,12 +53,17 @@ export default function CartPage() {
             <CartCard item={item} key={item.id} />
           ))}
         </div>
-        <div className="flex-right">
-          <div className="subtotal-container Lato-Bold">
+        <div className={styles.flex_right}>
+          <div className={styles.subtotal_container}>
             <div>Subtotal</div>
-            <div>{totalPrice}</div>
+            <div>{formatter.format(totalPrice)}</div>
           </div>
-          <div className="checkout-button">Proceed To Checkout</div>
+          <div
+            className={styles.checkout_button}
+            onClick={() => goToCheckout()}
+          >
+            Proceed To Checkout
+          </div>
         </div>
       </div>
     </>

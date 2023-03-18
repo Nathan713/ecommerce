@@ -1,20 +1,23 @@
-img{
-    object-fit: cover; 
-}
-.container2 {
+.container{
     height: 200vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    /* border: 10px solid red; */
+    /* align-items: center; */
 }
-
-
+.navContainer{
+    display: flex;
+    flex-direction: column;
+}
 .left {
     flex: 1;
     display:flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(233, 231, 230);
+    
     
 }
 
@@ -28,32 +31,42 @@ img{
     margin-top: 2rem;
 } 
 @media screen and (min-width: 720px) {
-    .container2 {
+    .container {
             flex-direction: row;
             height:100vh;
     }
+    .left{
+        flex:1
+    }
+    .right{
+        flex:1;
+    }
+    .carousel_img img {
+        max-width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+
+    }
 }
-.productDetailsContainer{
+.product_details_container{
     display: flex;
     flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
     width: calc(100% - 10%);
     height: calc(100% - 10%);
     background-color: white;
     position: relative;
 
 }
-.productName{
+.product_name{
     align-self: flex-start;
     font-size: 30px;
     margin-bottom: 2rem;
 }
-.productDescription{
+.product_description{
     font-size: 16px;
     margin-bottom: 2rem;
 }
-.productPrice{
+.product_price{
     align-self: flex-start;
     font-size: 16px;
     margin-bottom: 2rem;
@@ -73,10 +86,10 @@ img{
     height: 1px;
     background-color: black;
 }
-.colorSelector{
+.color_selector{
     margin-bottom: 2rem;
 }
-.quantityContainer {
+.quantity_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,55 +97,54 @@ img{
     
 }
 
-.quantity-start {
+.quantity_start {
     align-self: flex-start;
     font-size: 16px;
 }
 
-.quantity-end {
+.quantity_end {
     align-self: flex-end;
     display:flex;
     justify-content: center;
     align-items: center;
 }
-.addIcon{
+.add_icon{
     margin: 0 1rem;
 }
-.addIcon:hover{
+.add_icon:hover{
     scale: 1.5;
     background-color:rgba(1,2,3,0.1);
     cursor: pointer;
 }
-.removeIcon:hover{
+.remove_icon:hover{
     scale: 1.5;
     background-color:rgba(1,2,3,0.1);
     cursor:pointer;
 }
-.removeIcon{
+.remove_icon{
     margin: 0 1rem;
 }
-.quantityNumber{
+.quantity_number{
     font-size: 16px;
     border: solid 2px black;
     padding: 0 1.5rem;
 }
-.addToCartButton{
-    position: absolute;
+.add_to_cart_button{
     display: flex;
     justify-content: center;
     align-items: center;
-    bottom:3.5rem;
+    margin-top:auto;
     text-transform: uppercase;
     line-height: 2rem;
     padding: 1rem 0;
     width:100%;
     border: 3px solid black;   
 }
-.addToCartButton:hover{
+.add_to_cart_button:hover{
     background-color: rgba(1, 2, 3, 0.1);
     cursor: pointer;
 }
-.outOfStockButton {
+.out_of_stock_button {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -144,3 +156,71 @@ img{
     width: 100%;
     background-color: rgba(1, 2, 3, 0.1);
 }
+.arrow_left {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width:50px;
+    height:50px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    z-index:10;
+}
+
+.arrow_left:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.arrow_right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width:50px;
+    height:50px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    z-index:10;
+}
+
+.arrow_right:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.carousel_container{
+    width:100%;
+    height:100%;
+    /* position: relative; */
+    /* border: 2px solid green; */
+    /* overflow: hidden; */
+}
+.carousel{
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid yellow; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+        /* overflow: hidden; */
+}
+.carousel_img{
+
+    flex:1;
+    width: 100%;
+    height: 100%; 
+    
+    /* border: 2px solid blue; */
+}
+.carousel_img img{
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+
+}
+
+
+

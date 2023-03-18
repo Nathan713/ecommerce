@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./ProductPage.css";
+// import "./ProductPage.css";
+import styles from "./ProductPage.module.css";
 import Navbar from "../Components/Navbar";
 import { Carousel } from "react-responsive-carousel";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -12,6 +13,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function ProductPage() {
   const dispatch = useDispatch();
@@ -114,96 +116,107 @@ export default function ProductPage() {
   if (totalQuantity > 0) console.log(totalQuantity);
   return (
     <>
-      <Navbar></Navbar>
-      <div className="container2">
-        <div
-          className="left"
-          onMouseEnter={handleBoxToggle}
-          onMouseLeave={handleBoxTog}
-        >
-          <div className="carousel-container">
-            <Carousel
-              emulateTouch={true}
-              infiniteLoop={true}
-              showThumbs={false}
-              thumbWidth={150}
-              showIndicators={true}
-              showStatus={false}
-              className="carousel"
-              renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                hasPrev &&
-                visible && (
-                  <button
-                    className="arrow-left"
-                    type="button"
-                    onClick={onClickHandler}
-                    title={label}
-                  >
-                    <ArrowBackIosIcon fontSize="large"></ArrowBackIosIcon>
-                  </button>
-                )
-              }
-              renderArrowNext={(onClickHandler, hasNext, label) =>
-                hasNext &&
-                visible && (
-                  <button
-                    className="arrow-right"
-                    type="button"
-                    onClick={onClickHandler}
-                    title={label}
-                  >
-                    <ArrowForwardIosIcon fontSize="large"></ArrowForwardIosIcon>
-                  </button>
-                )
-              }
-            >
-              {currentvariantsdata.map((asset) => (
-                <div className="carousel-img" key={asset.id}>
-                  <img alt="bagss" src={asset.url} className="image" />
-                </div>
-              ))}
-            </Carousel>
-          </div>
-        </div>
-        <div className="right">
-          <div className="productDetailsContainer">
-            <div className="productName underline">{productName}</div>
-            <div className="productPrice">
-              <span className="price">{productPrice}</span>
+      <div className={styles.navContainer}>
+        <Navbar></Navbar>
+        <div className={styles.container}>
+          <div
+            className={styles.left}
+            onMouseEnter={handleBoxToggle}
+            onMouseLeave={handleBoxTog}
+          >
+            <div className={styles.carousel_container}>
+              <Carousel
+                infiniteLoop={true}
+                showThumbs={false}
+                showIndicators={true}
+                showStatus={false}
+                className={styles.carousel}
+                renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                  hasPrev &&
+                  visible && (
+                    <button
+                      className={styles.arrow_left}
+                      type="button"
+                      onClick={onClickHandler}
+                      title={label}
+                    >
+                      <ArrowBackIosIcon fontSize="large"></ArrowBackIosIcon>
+                    </button>
+                  )
+                }
+                renderArrowNext={(onClickHandler, hasNext, label) =>
+                  hasNext &&
+                  visible && (
+                    <button
+                      className={styles.arrow_right}
+                      type="button"
+                      onClick={onClickHandler}
+                      title={label}
+                    >
+                      <ArrowForwardIosIcon fontSize="large"></ArrowForwardIosIcon>
+                    </button>
+                  )
+                }
+              >
+                {currentvariantsdata.map((asset) => (
+                  <div className={styles.carousel_img}>
+                    <img
+                      alt="bagss"
+                      src={asset.url}
+                      className={styles.image}
+                      key={asset.id}
+                    />
+                  </div>
+                ))}
+              </Carousel>
             </div>
-            <div className="colorSelector">
-              {variantsdata.length > 0 && (
-                <ColorSwatch
-                  onSelectColor={handleSelectColor}
-                  assets={variantsdata}
-                ></ColorSwatch>
+          </div>
+          <div className={styles.right}>
+            <div className={styles.product_details_container}>
+              <div className={styles.product_name}>{productName}</div>
+
+              <div className={styles.product_price}>
+                <span className={styles.price}>{productPrice}</span>
+              </div>
+              <div className={styles.color_selector}>
+                {variantsdata.length > 0 && (
+                  <ColorSwatch
+                    onSelectColor={handleSelectColor}
+                    assets={variantsdata}
+                  ></ColorSwatch>
+                )}
+              </div>
+              <div className={styles.product_description}>
+                {productDescription}
+              </div>
+              <div className={styles.quantity_container}>
+                <div className={styles.quantity_start}>Quantity</div>
+                <div className={styles.quantity_end}>
+                  <AddIcon
+                    onClick={onAdd}
+                    className={styles.add_icon}
+                  ></AddIcon>
+                  <span className={styles.quantity_number}>{quantity}</span>
+                  <RemoveIcon
+                    onClick={onRemove}
+                    className={styles.remove_icon}
+                  ></RemoveIcon>
+                </div>
+              </div>
+              {/* {variantAssets &&
+            variantAssets[currentVariantIndex].inventory > 0 ? ( */}
+              {variantsdata.length > 0 &&
+              variantsdata[currentVariantIndex].inventory > 0 ? (
+                <div
+                  className={styles.add_to_cart_button}
+                  onClick={() => addToCart(id, quantity, currentVariantId)}
+                >
+                  Add To Cart
+                </div>
+              ) : (
+                <div className={styles.out_of_stock_button}>Out Of Stock</div>
               )}
             </div>
-            <div className="productDescription">{productDescription}</div>
-            <div className="quantityContainer">
-              <div className="quantity-start">Quantity</div>
-              <div className="quantity-end">
-                <AddIcon onClick={onAdd} className="addIcon"></AddIcon>
-                <span className="quantityNumber">{quantity}</span>
-                <RemoveIcon
-                  onClick={onRemove}
-                  className="removeIcon"
-                ></RemoveIcon>
-              </div>
-            </div>
-            {/* {variantAssets &&
-            variantAssets[currentVariantIndex].inventory > 0 ? ( */}
-            {variantsdata.length > 0 &&
-            variantsdata[currentVariantIndex].inventory > 0 ? (
-              <div
-                className="addToCartButton"
-                onClick={() => addToCart(id, quantity, currentVariantId)}
-              >
-                Add To Cart
-              </div>
-            ) : (
-              <div className="outOfStockButton">Out Of Stock</div>
-            )}
           </div>
         </div>
       </div>

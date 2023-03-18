@@ -1,26 +1,4 @@
 
-@font-face {
-    font-family: "Lato-Thin";
-    src: local("Lato"),
-        url("../fonts/Lato/Lato-Thin.ttf") format("truetype");
-}
-@font-face {
-    font-family: "Lato-Bold";
-    src: local("Lato"),
-        url("../fonts/Lato/Lato-Bold.ttf") format("truetype");
-}
-body{
-    text-transform: capitalize;
-    line-height: 1.5;
-}
-a{
-    text-decoration: none;
-    color:black;
-}
-h1{
-    font-size:2rem;
-    text-transform: uppercase;
-}
 nav{
     position: relative;
     z-index: 10;
@@ -64,6 +42,9 @@ nav{
 .flex-item .icons{
     padding:0.5rem;
 }
+.flex-item p{
+    display:none;
+}
 
 @media screen and (min-width:768px) {
     .flex-item{
@@ -74,9 +55,12 @@ nav{
     .flex-item a{
         display:flex;
     }
-        .flex-item.disappearing-link {
-            display: flex;
-        }
+    .flex-item.disappearing-link {
+        display: flex;
+    }
+    .flex-item p {
+        display: flex;
+    }
     .disappearing-link{
         padding:0 0.5rem;
     }

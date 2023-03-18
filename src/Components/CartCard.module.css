@@ -1,4 +1,4 @@
-.cart-card-container{
+.cart_card_container{
     width: 80%;
     height:250px;
     background: white;
@@ -12,7 +12,7 @@
         "image quantity delete";
     margin: 1rem 0;
 }
-.image-container{
+.image_container{
     grid-area: image;
     /* background-color: white; */
     display: flex;
@@ -20,13 +20,19 @@
     align-items: center;
 }
 
-.image-wrapper {
-    height: 240px;
-    width: 250px;
+.image_wrapper {
+    height: 120px;
+    width: 125px;
     position: relative;
 }
+@media screen and (min-width:480px) {
+    .image_wrapper {
+            height: 240px;
+            width: 250px;
+        }
+}
 
-.name-container{
+.name_container{
     grid-area: name;
     white-space: nowrap;
     overflow: hidden;
@@ -38,7 +44,7 @@
     padding-top: 1rem;
     /* background-color: pink; */
 }
-.price-container{
+.price_container{
     grid-area: price;
     font-size: 20px;
     padding-top: 1.5rem;
@@ -48,7 +54,7 @@
     /* border-left: 0.1px solid rgba(0, 0, 0, 0.3); */
     /* background-color: grey; */
 }
-.selected-options-container{
+.selected_options_container{
     grid-area: selectedOptions;
     display:flex;
     justify-content: space-between;
@@ -58,7 +64,7 @@
     padding-top: 1rem;
     /* background-color: aqua; */
 }
-.quantity-container{
+.quantity_container{
     grid-area: quantity;
     border-left: 0.1px solid rgba(0, 0, 0, 0.1);
     border-bottom: 0.1px solid rgba(0, 0, 0, 0.1);
@@ -66,37 +72,37 @@
     padding-top: 1rem;
     /* background-color: red; */
 }
-.cart-image{
+.cart_image{
     height: 100%;
     width:100%;
     object-fit: cover;
 }
-.position-left{
+.position_left{
     display:inline-block;
 }
-.delete-container{
+.delete_container{
     grid-area: delete;
     /* background-color: red; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.delete-container:hover{
+.delete_container:hover{
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
 @media screen and (max-width:720px) {
-    .remove-text{
+    .remove_text{
         display:none;
     }
 }
-.view-product-container{
+.view_product_container{
     grid-area: view;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.view-product-container:hover {
+.view_product_container:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }

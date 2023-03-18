@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
-import "./HomePage.css";
+// import "./HomePage.css";
+import styles from "./HomePage.module.css";
 import hero from "../media/video.mp4";
 import hero2 from "../media/hero.webm";
 import Item from "../Components/Item";
@@ -27,9 +28,8 @@ function HomePage() {
 
   if (loading)
     return (
-      <div className="loaderContainer">
+      <div className={styles.loader_container}>
         <ColorRing
-          className="loader"
           visible={true}
           height="80"
           width="80"
@@ -42,13 +42,13 @@ function HomePage() {
     );
   else
     return (
-      <div className="container">
+      <div className={styles.container}>
         {/* navbar */}
         <Navbar></Navbar>
         {/* end navbar */}
         {/* start video */}
-        <section className="video-container">
-          <video muted autoPlay loop className="video">
+        <section className={styles.video_container}>
+          <video muted autoPlay loop className={styles.video}>
             <source src={hero} type="video/mp4" />
             Sorry, your browser does not support embedded videos
           </video>
@@ -56,7 +56,7 @@ function HomePage() {
         {/* end video */}
         {/* start item container */}
 
-        <section className="item-section">
+        <section className={styles.item_container}>
           {entities.map((product) => (
             <Item key={product.id} product={product} />
           ))}

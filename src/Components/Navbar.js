@@ -35,10 +35,11 @@ export default function Navbar() {
     setSearchTerm(event.target.value);
   };
   const handleSearchEnter = () => {
-    dispatch(getProducts({ searchBy: 2, query: searchTerm, slugs: [] }));
+    // dispatch(getProducts({ searchBy: 2, query: searchTerm, slugs: [] }));
+    const savedSearch = searchTerm;
     setSearchTerm("");
     setSearchOn(false);
-    navigate("/", { state: { skipEffect: true } });
+    navigate(`/search/${savedSearch}`);
   };
   const logoClick = () => {
     navigate("/", { state: { skipEffect: false } });
@@ -105,14 +106,14 @@ export default function Navbar() {
             )}
 
             <motion.div
-              className="font-face-Lato-Bold"
+              className=" flex-item font-face-Lato-Bold"
               key={text}
               initial={{ opacity: 0, rotateX: -180 }}
               animate={{ opacity: 1, rotateX: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
               exit={{ opacity: 0, rotateX: 0 }}
             >
-              {text}
+              <p>{text}</p>
             </motion.div>
           </div>
           <div
@@ -122,23 +123,23 @@ export default function Navbar() {
             }}
           >
             <SearchIcon fontSize="large"></SearchIcon>
-            Search
+            <p>Search</p>
           </div>
           <h1 onClick={() => logoClick()} className="logo font-face-Lato-Thin">
             My Store
           </h1>
           <div className="flex-item disappearing-link font-face-Lato-Bold">
-            Wishlist
+            <p>Wishlist</p>
           </div>
           <div className="flex-item disappearing-link font-face-Lato-Bold">
-            Sign in
+            <p>Sign In</p>
           </div>
           <div
             className="flex-item font-face-Lato-Bold cart"
             onClick={() => onCartClick()}
           >
             <ShoppingBagIcon fontSize="large"></ShoppingBagIcon>
-            Cart
+            <p>Cart</p>
             <span className="cart-items">{totalQuantity}</span>
           </div>
         </div>

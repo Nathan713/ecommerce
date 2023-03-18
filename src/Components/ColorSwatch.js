@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./ColorSwatch.css";
+import styles from "./ColorSwatch.module.css";
 
 export default function ColorSwatch({ onSelectColor, assets }) {
   const [colors, setColors] = useState([]);
@@ -22,11 +22,11 @@ export default function ColorSwatch({ onSelectColor, assets }) {
   };
 
   return (
-    <div className="color-container">
+    <div className={styles.color_container}>
       {colors.map((color) => (
         <div
           onClick={() => onSelectColor(color.id)}
-          className="circle"
+          className={styles.circle}
           style={{ backgroundColor: color.color }}
           key={color.id}
         ></div>

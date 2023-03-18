@@ -1,11 +1,11 @@
-.cartpage-container{
+.cartpage_container{
     /* background-color: red; */
     width: 98vw;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
 }
-.flex-left{
+.flex_left{
     /* background-color: blue; */
     background-color: rgb(233, 231, 230);
     display: flex;
@@ -14,7 +14,7 @@
     align-items: center;
         
 }
-.flex-right{
+.flex_right{
     background-color: white;
     height: 500px;
     width:100%;
@@ -24,31 +24,38 @@
     margin-top: 1rem;
 }
 @media screen and (min-width: 1080px) {
-    .cartpage-container {
+    .cartpage_container {
         flex-direction: row;
     }
-    .flex-left{
+    .flex_left{
         flex: 4;
     }
-    .flex-right{
+    .flex_right{
         flex: 1;
         justify-content: center;
     }
-    
 }
-.cart-header{
+.cart_header {
     /* background-color: red; */
-    font-size: 34px;
+    font-size: 20px;
     /* align-self: flex-start; */
 }
-.continue-shopping{
+@media screen and (min-width: 720px) {
+    .cart_header {
+            /* background-color: red; */
+            font-size: 34px;
+            /* align-self: flex-start; */
+        }
+}
+
+.continue_shopping{
     font-size: 16px;
     align-self: flex-end;
     text-decoration: underline;
     text-underline-offset: 4px;
     cursor: pointer;
 }
-.cart-header-container{
+.cart_header_container{
     width:80%;
     display:flex;
     flex-direction:row;
@@ -57,7 +64,7 @@
     /* align-items: center; */
     /* background-color: blue; */
 }
-.subtotal-container{
+.subtotal_container{
     /* background-color: aqua; */
     display:flex;
     justify-content: space-between;
@@ -65,7 +72,7 @@
     font-size: 20px;
     width:80%
 }
-.checkout-button{
+.checkout_button{
     align-self:center;
     width:80%;
     background-color: black;
@@ -74,7 +81,7 @@
     margin-top:1rem;
     text-align: center;
 }
-.checkout-button:hover{
+.checkout_button:hover{
     background-color: rgb(233, 231, 230);
     color:black;
     cursor:pointer;

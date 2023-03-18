@@ -64,7 +64,7 @@ export const cartSlice = createSlice({
         state.loading = false;
         console.log("action = ", action);
         state.items = action.payload.line_items;
-        state.totalPrice = action.payload.subtotal.formatted_with_symbol;
+        state.totalPrice = action.payload.subtotal.raw;
         state.totalQuantity = action.payload.total_items;
       })
       .addCase(addItem.rejected, (state, action) => {
@@ -77,7 +77,7 @@ export const cartSlice = createSlice({
       .addCase(retrieveCart.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload.line_items;
-        state.totalPrice = action.payload.subtotal.formatted_with_symbol;
+        state.totalPrice = action.payload.subtotal.raw;
         state.totalQuantity = action.payload.total_items;
       })
       .addCase(retrieveCart.rejected, (state, action) => {
@@ -91,7 +91,7 @@ export const cartSlice = createSlice({
         state.loading = false;
         console.log("action = ", action);
         state.items = action.payload.line_items;
-        state.totalPrice = action.payload.subtotal.formatted_with_symbol;
+        state.totalPrice = action.payload.subtotal.raw;
         state.totalQuantity = action.payload.total_items;
       })
       .addCase(deleteItem.rejected, (state, action) => {
