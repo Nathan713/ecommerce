@@ -18,8 +18,8 @@ export default function Navbar() {
   const dropdownRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchOn, setSearchOn] = useState(false);
-
   const [text, setText] = useState("Menu");
+  const [isVisible, setIsVisible] = useState(true);
 
   const dispatch = useDispatch();
   const { totalQuantity } = useSelector((state) => state.cart);
@@ -42,7 +42,7 @@ export default function Navbar() {
     navigate(`/search/${savedSearch}`);
   };
   const logoClick = () => {
-    navigate("/", { state: { skipEffect: false } });
+    navigate("/");
   };
   const handleCategoryClick = (categoryName) => {
     // let arr = [];
@@ -60,6 +60,32 @@ export default function Navbar() {
     fetchCategories();
     dispatch(retrieveCart());
   }, []);
+
+  useEffect(() => {
+    let timeoutId = null;
+
+    const handleScroll = () => {
+      setIsVisible(true);
+      console.log(window.scrollY);
+
+      if (window.scrollY >= 500 && !searchOn && !dropdown) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          setIsVisible(false);
+        }, 2000); // adjust this value to set the duration of inactivity required to show the navbar again
+      }
+      if (window.scrollY < 500) {
+        clearTimeout(timeoutId);
+        setIsVisible(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [searchOn, dropdown]);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -90,7 +116,7 @@ export default function Navbar() {
   };
   return (
     <>
-      <nav>
+      <nav className={`navbar ${isVisible ? "visible" : "hidden"}`}>
         <div className="flex-container">
           <div
             // ref={dropdownRef}
@@ -169,7 +195,7 @@ export default function Navbar() {
 
       <motion.div
         style={{
-          zIndex: 1,
+          zIndex: 20,
           transform: "translateZ(0)",
         }}
         className="searchbar-container"

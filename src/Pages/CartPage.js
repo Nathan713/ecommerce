@@ -25,7 +25,7 @@ export default function CartPage() {
     currency: "USD",
   });
   const goToHome = () => {
-    navigate("/", { state: { skipEffect: false } });
+    navigate("/");
   };
   const goToCheckout = () => {
     console.log("checkout");

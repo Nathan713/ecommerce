@@ -1,6 +1,11 @@
 
 nav{
-    position: relative;
+    position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        transition: transform 0.2s linear;
     z-index: 10;
     width:100vw;
     display: flex;
@@ -45,6 +50,22 @@ nav{
 .flex-item p{
     display:none;
 }
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    transition: transform 0.2s linear;
+}
+
+.visible {
+    transform: translateY(0);
+}
+
+.hidden {
+    transform: translateY(-100px);
+}
 
 @media screen and (min-width:768px) {
     .flex-item{
@@ -66,7 +87,8 @@ nav{
     }
 }
 .dropdown-container{
-    position: absolute;
+    /* position: absolute; */
+    position: fixed;
     display: flex;
     justify-content: center;
     z-index:2;
@@ -97,14 +119,16 @@ nav{
 }
 .searchbar-container{
     display:flex;
-    position: absolute;
+    /* position: absolute; */
+    position:fixed;
+    top:100px;
+    left:0px;
     justify-content: center;
     align-items: center;
     width:100vw;
     height: 80px;
     background-color: white;
-    top:100px;
-    left:0px;
+    
 }
 .searchbar{
     width: 50%;
