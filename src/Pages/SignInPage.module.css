@@ -1,0 +1,18 @@
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.details h3{
+    margin-top: 0.5rem;
+    
+}
+.signOutButton{
+    background-color: blue;
+    margin-top: 1rem;
+    
+}
+.signIn{
+    margin-bottom: 1rem;
+}

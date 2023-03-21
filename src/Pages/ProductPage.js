@@ -14,6 +14,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ProductPage() {
   const dispatch = useDispatch();
@@ -99,6 +100,7 @@ export default function ProductPage() {
   };
 
   const addToCart = (productId, quantity, variantId) => {
+    toast.success("Successfully Added Items To Cart");
     dispatch(
       addItem({
         productId: productId,
@@ -220,6 +222,7 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
+      <Toaster />
     </>
   );
 }

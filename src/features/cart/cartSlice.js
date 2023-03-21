@@ -6,6 +6,7 @@ const initialState = {
   totalQuantity: 0,
   totalPrice: 0,
   loading: false,
+  deleted: false,
 };
 
 export const addItem = createAsyncThunk(
@@ -42,6 +43,19 @@ export const retrieveCart = createAsyncThunk(
     try {
       let cart = {};
       cart = await commerce.cart.retrieve();
+      console.log(cart);
+      return cart;
+    } catch (error) {
+      throw Error(error.message);
+    }
+  }
+);
+export const removeAll = createAsyncThunk(
+  "cart.removeAll",
+  async (thunkAPI) => {
+    try {
+      let cart = {};
+      cart = await commerce.cart.empty();
       console.log(cart);
       return cart;
     } catch (error) {
@@ -89,12 +103,28 @@ export const cartSlice = createSlice({
       .addCase(deleteItem.fulfilled, (state, action) => {
         // console.log(action);
         state.loading = false;
+        state.deleted = true;
         console.log("action = ", action);
         state.items = action.payload.line_items;
         state.totalPrice = action.payload.subtotal.raw;
         state.totalQuantity = action.payload.total_items;
       })
       .addCase(deleteItem.rejected, (state, action) => {
+        console.log(action);
+        state.loading = false;
+      })
+      .addCase(removeAll.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(removeAll.fulfilled, (state, action) => {
+        // console.log(action);
+        state.loading = false;
+        console.log("action = ", action);
+        state.items = action.payload.line_items;
+        state.totalPrice = action.payload.subtotal.raw;
+        state.totalQuantity = action.payload.total_items;
+      })
+      .addCase(removeAll.rejected, (state, action) => {
         console.log(action);
         state.loading = false;
       });

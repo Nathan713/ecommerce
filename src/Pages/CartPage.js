@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import CartCard from "../Components/CartCard";
 import Navbar from "../Components/Navbar";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function CartPage() {
   const { items, totalQuantity, totalPrice, loading } = useSelector(

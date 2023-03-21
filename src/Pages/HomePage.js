@@ -37,43 +37,46 @@ function HomePage() {
     );
   else
     return (
-      <div className={styles.container}>
+      <>
         {/* navbar */}
         <Navbar></Navbar>
         {/* end navbar */}
-        {/* start video */}
-        <section className={styles.video_container}>
-          <video muted autoPlay loop className={styles.video}>
-            <source src={hero} type="video/mp4" />
-            Sorry, your browser does not support embedded videos
-          </video>
-        </section>
-        {/* end video */}
-        {/* start item container */}
 
-        <section className={styles.item_container}>
-          {entities.map((product) => (
-            <Item key={product.id} product={product} />
-          ))}
+        <div className={styles.container}>
+          {/* start video */}
+          <section className={styles.video_container}>
+            <video muted autoPlay loop className={styles.video}>
+              <source src={hero} type="video/mp4" />
+              Sorry, your browser does not support embedded videos
+            </video>
+          </section>
+          {/* end video */}
+          {/* start item container */}
 
-          {entities.map((product) => (
-            <Item key={product.id} product={product} />
-          ))}
-          {entities.map((product) => (
-            <Item key={product.id} product={product} />
-          ))}
-          {entities.map((product) => (
-            <Item key={product.id} product={product} />
-          ))}
-          {/* <Item image={products[0].image.url}></Item> */}
-          {/* <Item></Item>
+          <section className={styles.item_container}>
+            {entities.map((product) => (
+              <Item key={product.id} product={product} />
+            ))}
+
+            {entities.map((product) => (
+              <Item key={product.id} product={product} />
+            ))}
+            {entities.map((product) => (
+              <Item key={product.id} product={product} />
+            ))}
+            {entities.map((product) => (
+              <Item key={product.id} product={product} />
+            ))}
+            {/* <Item image={products[0].image.url}></Item> */}
+            {/* <Item></Item>
         <Item></Item>
         <Item></Item>
         <Item></Item>
         <Item></Item> */}
-        </section>
-        {/*end item container*/}
-      </div>
+          </section>
+          {/*end item container*/}
+        </div>
+      </>
     );
 }
 

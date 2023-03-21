@@ -10,6 +10,8 @@ import CartPage from "./Pages/CartPage";
 import CheckoutPage from "./Pages/CheckoutPage";
 import SearchPage from "./Pages/SearchPage";
 import CategoryPage from "./Pages/CategoryPage";
+import PaymentCompletionPage from "./Pages/PaymentCompletionPage";
+import SignInPage from "./Pages/SignInPage";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/search/:search" element={<SearchPage />} />
           <Route path="/category/:category" element={<CategoryPage />} />
+          <Route path="/checkoutcomplete" element={<PaymentCompletionPage />} />
+          <Route path="/signin" element={<SignInPage />} />
         </Routes>
       </Router>
     </Provider>

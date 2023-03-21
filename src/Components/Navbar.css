@@ -30,6 +30,7 @@ nav{
     display: flex;
     justify-content: center;
     cursor: pointer;
+    font-size: 30px;
 }
 
 .flex-item {
@@ -91,7 +92,7 @@ nav{
     position: fixed;
     display: flex;
     justify-content: center;
-    z-index:2;
+    z-index:11;
     background-color: white;
     width:30%;
     height: calc(100vh - 100px);

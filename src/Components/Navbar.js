@@ -23,12 +23,17 @@ export default function Navbar() {
 
   const dispatch = useDispatch();
   const { totalQuantity } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.users);
 
   const navigate = useNavigate();
 
   const onCartClick = () => {
     console.log("cart");
     navigate("/cart");
+  };
+  const onSignIn = () => {
+    console.log("sign in");
+    navigate("/signin");
   };
 
   const handleSearch = (event) => {
@@ -155,11 +160,14 @@ export default function Navbar() {
           <h1 onClick={() => logoClick()} className="logo font-face-Lato-Thin">
             My Store
           </h1>
-          <div className="flex-item disappearing-link font-face-Lato-Bold">
+          {/* <div className="flex-item disappearing-link font-face-Lato-Bold">
             <p>Wishlist</p>
-          </div>
-          <div className="flex-item disappearing-link font-face-Lato-Bold">
-            <p>Sign In</p>
+          </div> */}
+          <div
+            className="flex-item disappearing-link font-face-Lato-Bold"
+            onClick={() => onSignIn()}
+          >
+            {user ? <p>Hello, {user.given_name}</p> : <p>Sign In</p>}
           </div>
           <div
             className="flex-item font-face-Lato-Bold cart"
@@ -195,7 +203,7 @@ export default function Navbar() {
 
       <motion.div
         style={{
-          zIndex: 20,
+          zIndex: 10,
           transform: "translateZ(0)",
         }}
         className="searchbar-container"

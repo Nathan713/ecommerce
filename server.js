@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 // This is your test secret API key.
-const stripe = require("stripe")(
-  "sk_test_51MlWxwEHRdXBGCKXtdr9aqmZt0ZOb1rmIv3NRE5w1jIqhc1JlETLlruZticuosu9YrYkUoY9JlxDsQBa02aOJQWZ00Ur0brvzh"
-);
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
+// console.log(process.env.STRIPE_SECRET);
+const endpointSecret =
+  "whsec_e8763f94295b80b9769d0a8f761e426020de4e3c98016bf8f47ccf2a04330cc0";
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -42,5 +44,37 @@ app.post("/create-payment-intent", async (req, res) => {
     clientSecret: paymentIntent.client_secret,
   });
 });
+
+// app.post(
+//   "/webhook",
+//   express.raw({ type: "application/json" }),
+//   (request, response) => {
+//     const sig = request.headers["stripe-signature"];
+
+//     let event;
+
+//     try {
+//       event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+//     } catch (err) {
+//       response.status(400).send(`Webhook Error: ${err.message}`);
+//       return;
+//     }
+
+//     // Handle the event
+//     switch (event.type) {
+//       case "payment_intent.succeeded":
+//         const paymentIntentSucceeded = event.data.object;
+//         console.log(paymentIntentSucceeded);
+//         // Then define and call a function to handle the event payment_intent.succeeded
+//         break;
+//       // ... handle other event types
+//       default:
+//         console.log(`Unhandled event type ${event.type}`);
+//     }
+
+//     // Return a 200 response to acknowledge receipt of the event
+//     response.send();
+//   }
+// );
 
 app.listen(4242, () => console.log("Node server listening on port 4242!"));

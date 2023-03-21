@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import {
   PaymentElement,
+  AddressElement,
   LinkAuthenticationElement,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
 import styles from "../Pages/CheckoutPage.module.css";
+import { useSelector } from "react-redux";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const { user } = useSelector((state) => state.users);
 
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
@@ -32,8 +35,8 @@ export default function CheckoutForm() {
       console.log(paymentIntent);
       switch (paymentIntent.status) {
         case "succeeded":
+          console.log("succedddede");
           setMessage("Payment succeeded!");
-
           break;
         case "processing":
           setMessage("Your payment is processing.");
@@ -63,7 +66,8 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        return_url: "http://localhost:3000/checkoutcomplete",
+        receipt_email: email,
       },
     });
 
@@ -90,10 +94,23 @@ export default function CheckoutForm() {
       <LinkAuthenticationElement
         id="link-authentication-element"
         onChange={(e) => setEmail(e.target.value)}
+        options={{
+          defaultValues: {
+            email: user?.email || "",
+          },
+        }}
       />
       <PaymentElement
         id={styles.payment_element}
         options={paymentElementOptions}
+      />
+      <AddressElement
+        options={{
+          mode: "shipping",
+          defaultValues: {
+            name: user?.name || "",
+          },
+        }}
       />
       <button disabled={isLoading || !stripe || !elements} id={styles.submit}>
         <span id={styles.buttonText}>

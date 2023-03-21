@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteItem } from "../features/cart/cartSlice";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function CartCard({ item }) {
   // item is object in cart array
@@ -16,6 +17,7 @@ export default function CartCard({ item }) {
   //   console.log(item.selected_options);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     console.log(item);
     setQuantity(item.quantity);
@@ -27,6 +29,7 @@ export default function CartCard({ item }) {
 
   const onDeleteItem = (itemId) => {
     dispatch(deleteItem({ itemId: itemId }));
+    toast.success("Deleting Item");
   };
 
   const onViewItem = (productId) => {
@@ -50,10 +53,11 @@ export default function CartCard({ item }) {
         </div>
         <div className={styles.selected_options_container}>
           {selectedOption.map((option) => (
-            <>
-              <div>{option.group_name}: </div>
-              <div className={styles.position_left}>{option.option_name}</div>
-            </>
+            <div className={styles.option_flex} key={option.option_id}>
+              <div>
+                {option.group_name}: {option.option_name}
+              </div>
+            </div>
           ))}
         </div>
         <div className={styles.quantity_container}>Qty: {quantity}</div>
@@ -72,6 +76,7 @@ export default function CartCard({ item }) {
           <span className={styles.remove_text}>Details</span>
         </div>
       </div>
+      <Toaster />
     </>
   );
 }

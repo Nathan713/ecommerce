@@ -27,10 +27,7 @@ export default function CheckoutPage() {
   }, [totalPrice]);
 
   const appearance = {
-    theme: "night",
-    variables: {
-      colorBackground: "#1726cf",
-    },
+    theme: "stripe",
   };
   const options = {
     clientSecret,
