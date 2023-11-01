@@ -66,7 +66,8 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/checkoutcomplete",
+        // return_url: "http://localhost:3000/checkoutcomplete",
+        return_url: "https://ecommerce-omega-tan.vercel.app/checkoutcomplete",
         receipt_email: email,
       },
     });
