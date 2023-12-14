@@ -8,7 +8,7 @@ import CheckoutForm from "../Components/CheckoutForm";
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
 const stripePromise = loadStripe(
-  process.env.STRIPE_PK
+  `${process.env.STRIPE_PK}`
 );
 
 export default function CheckoutPage() {
